@@ -38,7 +38,6 @@ func run() {
 	err_handler(cmd.Run())
 }
 
-
 func child() {
 	fmt.Printf("Running %v \n", os.Args[2:])
 
@@ -50,13 +49,15 @@ func child() {
 	cmd.Stderr = os.Stderr
 
 	err_handler(syscall.Sethostname([]byte("containerized")))
-	err_handler(syscall.Chroot("/tmp/container_fs"))
+	fmt.Println("Chrooting")
+	err_handler(syscall.Chroot("./containerized"))
+	fmt.Println("Chdir")
 	err_handler(os.Chdir("/"))
-	err_handler(syscall.Mount("proc", "proc", "proc", 0, ""))
-	err_handler(syscall.Mount("thing", "mytemp", "tmpfs", 0, ""))
+	//err_handler(syscall.Mount("proc", "proc", "proc", 0, ""))
+	//err_handler(syscall.Mount("thing", "mytemp", "tmpfs", 0, ""))
 	err_handler(cmd.Run())
-	err_handler(syscall.Unmount("proc", 0))
-	err_handler(syscall.Unmount("thing", 0))
+	//err_handler(syscall.Unmount("proc", 0))
+	//err_handler(syscall.Unmount("thing", 0))
 }
 
 func set_cgroups() {
