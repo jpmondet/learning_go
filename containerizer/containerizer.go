@@ -10,7 +10,15 @@ import (
 	"syscall"
 )
 
-// go run main.go run <cmd> <args>
+// go run containerizer.go run <cmd> <args>
+// Must have some bin/libs (or better an fs) in ./containerized/
+// Easiest :
+// mkdir ./containerized/bin/ ./containerized/lib/ ./containerized/lib64/ ./containerized/usr/
+// cp /bin /bash ./containerized/bin/bash
+// sudo mount -o bind /usr ./containerized/lib
+// sudo mount -o bind /usr ./containerized/lib64
+// sudo mount -o bind /usr ./containerized/usr
+// go run containerizer.go run /bin/bash
 func main() {
 	switch os.Args[1] {
 	case "run":
