@@ -30,3 +30,20 @@ or on a Python-style (``for key, value := range``)
 - https://golang.org/doc/
 - https://golang.org/pkg/
 - https://golang.org/src/
+
+# Some warnings :
+- Variable assignment with ``:=`` works only inside a func
+- Shadow variables can be painful. Help : ``go tool vet -shadow your_file.go``
+  or ``go-nyet``
+- Adding an item (``m['first'] = 1``) to a ``nil`` map (declared with ``var m map[string]int``)
+  throws an error
+- cap() won't work on a map already initialized
+- Unlike in ``C``, Arrays are not pointers
+- Unlike ``Python``,  ``range`` always returns an index
+- Checking if a key exists on a map can be done with ``if _ ,ok := m['k']; !ok
+  {}
+- Go is not as easy as ``Python`` for ``Strings`` : 
+  - Can't modify a string (immutable). Can convert it to bytes slice instead ``[]byte(s)``
+  - On a string, s[2] won't return a char. It will return a byte value.
+  - ``len(string)`` returns the number of bytes, not the number of chars...
+
