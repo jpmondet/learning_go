@@ -27,6 +27,7 @@ or on a Python-style (``for key, value := range``)
 - Basic error handling : ``if x, err := test(); err != nil { fmt.Println(err) } else {}``
 - Concurrency with Channels (communication ``<-``) & goroutines (``go``)
 - ``Select-case`` statements is like switch but for Channels
+- ``sync.WaitGroup`` can be usefull to wait all goroutines
 - https://golang.org/doc/
 - https://golang.org/pkg/
 - https://golang.org/src/
@@ -46,4 +47,11 @@ or on a Python-style (``for key, value := range``)
   - Can't modify a string (immutable). Can convert it to bytes slice instead ``[]byte(s)``
   - On a string, s[2] won't return a char. It will return a byte value.
   - ``len(string)`` returns the number of bytes, not the number of chars...
+  - To be encoded, a struct NEEDS to be exportable (upper case first letter)
+  - Sending to close channels causes panic
+  - ``nil`` channels block infinitely
+  - ``http library`` : Even empty body must be closed (/!\ the response must
+    not be ``nil``)
+  - JSON encoder adds a newline char
+  - ``==`` can't compare every types. ``reflect.DeepEqual`` or ``bytes.Equal`` can help.
 
