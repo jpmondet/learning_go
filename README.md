@@ -1,6 +1,7 @@
 # Go quick reminders
 
 - C-style comments, brackets, names (suchAsThisOne) and ... pointers!
+- vars & const can be written like imports (with parenthesis)
 - stdout -> ``fmt.Println("Hello")``
 - Functions stating with an upper case letter are exportable
 - ``func name(paramsNames type) (returnsNames type){}``
